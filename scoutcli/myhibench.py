@@ -162,6 +162,8 @@ def configure(ctx, master, map_parallelism, reduce_parallelism, spark_master, dr
     execute('sed -i "s/^hibench.default.shuffle.parallelism.*/hibench.default.shuffle.parallelism     {}/" {}'.format(reduce_parallelism, configuration_hibench_path))
 
     #hibench.hadoop.home     /opt/hadoop
+    print(spark_master)
+    print(configuration_spark_path)
     execute('sed -i "s/^hibench.spark.master.*/hibench.spark.master    {}/" {}'.format(spark_master, configuration_spark_path))
     execute('sed -i "s/^hibench.hdfs.master.*/hibench.hdfs.master    hdfs:\/\/{}:9000/" {}'.format(master, configuration_hadoop_path))
 
