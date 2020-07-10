@@ -108,7 +108,7 @@ profile_apps() {
         for datasize in ${datasize_list};
         do
             # prepare dataset
-            myhibench prepare_dataset --workload ${workload_name} --datasize ${datasize}
+            myhibench preparedataset --workload ${workload_name} --datasize ${datasize}
             for (( i=1;i<=${iterations};i++ ));
             do
                 output_name=${cluster_size}_${instance_type}_${instance_id}_${workload_name}_${framework}_${datasize}_${i}

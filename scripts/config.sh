@@ -118,7 +118,7 @@ profile_app() {
 
     # prepare dataset
     if [ "${benchmark}" == "hibench" ]; then
-        ${script_name} prepare_dataset --workload ${app} --datasize ${datasize}
+        ${script_name} preparedataset --workload ${app} --datasize ${datasize}
     fi
                 
     output_name=${cluster_size}_${instance_type}_${app}_${framework}_${datasize}_${run_id}

@@ -215,7 +215,7 @@ def clean(ctx):
 @click.option('--workload', default='wordcount')
 @click.option('--datasize')
 @click.pass_context
-def prepare_dataset(ctx, workload, datasize):
+def preparedataset(ctx, workload, datasize):
     ctx.invoke(config_datasize, datasize=datasize)
     category = ctx.invoke(get_category, workload=workload)
     print("Preparing dataset: {} | {}".format(category, workload))
@@ -355,7 +355,7 @@ def run(ctx, workload, output_dir, prepare, monitoring, interval, timeout, datas
     ctx.invoke(config_datasize, datasize=datasize)
 
     if prepare:
-        ctx.invoke(prepare_dataset, workload=workload_name, datasize=datasize)
+        ctx.invoke(preparedataset, workload=workload_name, datasize=datasize)
 
     # workaround to avoid failure on als, lr
     # time.sleep(30)
