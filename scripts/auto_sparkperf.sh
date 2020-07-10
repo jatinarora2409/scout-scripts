@@ -78,7 +78,7 @@ config_cluster() {
     do
         echo "Configuring ${node_ip}"
         #ssh ${node_ip} "source ~/project-aws/init.sh; mysparkperf_dist auto_configure --master ${master} --slaves '${node_list}'"
-        ssh ${node_ip} "source ~/project-aws/init.sh; mysparkperf_dist auto_configure --master ${master} --slaves '${node_list}'; myhibench_dist init"
+        ssh ${node_ip} "source ~/project-aws/init.sh; mysparkperf_dist auto-configure --master ${master} --slaves '${node_list}'; myhibench_dist init"
     done
     ssh ${master} "source ~/project-aws/init.sh; mysparkperf_dist start"
 }

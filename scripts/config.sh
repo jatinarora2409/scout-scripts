@@ -77,7 +77,7 @@ config_cluster() {
     for node_ip in ${instance_list};
     do
         echo "Configuring ${node_ip}"
-        (ssh ${node_ip} "myhibench auto_configure --master ${master} --slaves '${node_list}'; myhibench init") &
+        (ssh ${node_ip} "myhibench auto-configure --master ${master} --slaves '${node_list}'; myhibench init") &
     done
     wait
     echo All instances are configured
