@@ -172,8 +172,8 @@ def configure(ctx, replicas, hostname, cores, memory, am_cores, task_cores, mast
 
     template_hdfs_content = template_hdfs.format(replicas)
     template_mapreduce_content = template_mapreduce.format(am_memory, am_cores, task_memory, task_cores, task_memory, task_cores)
-    template_yarn_content = template_yarn.format(master, memory, cores, memory, cores) # one extra core for AM in Yarn
-    template_core_content = template_core.format(master)
+    template_yarn_content = template_yarn.format('127.0.0.1', memory, cores, memory, cores) # one extra core for AM in Yarn
+    template_core_content = template_core.format('127.0.0.1')
     configuration_hdfs_path = os.path.join(ctx.obj['hadoop_dir'], 'etc', 'hadoop', 'hdfs-site.xml')
     configuration_mapreduce_path = os.path.join(ctx.obj['hadoop_dir'], 'etc', 'hadoop', 'mapred-site.xml')
     configuration_yarn_path = os.path.join(ctx.obj['hadoop_dir'], 'etc', 'hadoop', 'yarn-site.xml')
