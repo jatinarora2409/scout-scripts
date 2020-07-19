@@ -61,7 +61,7 @@ setup_ami()
     sudo rm -rf $SCOUT_DIR
     sudo mkdir -p $SCOUT_DIR
     sudo chmod a+rwx $SCOUT_DIR
-    git clone https://github.com/oxhead/scout-scripts.git $SCOUT_DIR
+    git clone https://github.com/jatinarora2409/scout-scripts.git $SCOUT_DIR
 
     # deploy the scout tools
     pip install $SCOUT_DIR'''.format(scout_dir) + '''
