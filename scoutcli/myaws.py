@@ -42,10 +42,10 @@ def cli(ctx, **kwargs):
 @click.pass_context
 def run(ctx, *args, **kwargs):
     client = boto3.client('ec2')
-    kwargs['user_data'] = _generate_launch_script(kwargs['workload'], kwargs['terminate'], kwargs['scout_dir'], kwargs['script_dir']) if kwargs['user_data'] is None else kwargs['user_data']
+    # kwargs['user_data'] = _generate_launch_script(kwargs['workload'], kwargs['terminate'], kwargs['scout_dir'], kwargs['script_dir']) if kwargs['user_data'] is None else kwargs['user_data']
     kwargs['spot_price'] = _get_spot_price(kwargs['instance_type']) if kwargs['spot_price'] is None else kwargs['spot_price']
-    print(kwargs['user_data'])
-    print(base64.b64encode(kwargs['user_data'].encode()).decode())
+#    print(kwargs['user_data'])
+#    print(base64.b64encode(kwargs['user_data'].encode()).decode())
     _request_spot_instance(client, **kwargs)
 
 
@@ -176,3 +176,4 @@ def _request_spot_instance(client, **kwargs):
         DryRun=kwargs['dry_run'],
         SpotFleetRequestConfig=spot_fleet_request_config
     )
+    print(response)
