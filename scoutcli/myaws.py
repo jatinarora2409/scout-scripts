@@ -99,7 +99,7 @@ def run_command(instance_ip,cmd):
         client.connect(hostname=instance_ip, username="ubuntu", pkey=key)
 
         # Execute a command(cmd) after connecting/ssh to an instance
-        stdin, stdout, stderr = client.exec_command(cmd)
+        stdin, stdout, stderr = client.exec_command(cmd,get_pty=True)
         print(stdout.read())
 
         # close the client connection once the job is done
@@ -218,8 +218,8 @@ def _request_spot_instance(client, **kwargs):
     print(instance_ip)
 
     print("\n")
-    # run_command(instance_ip, "source /home/ubuntu/.bashrc")
-    # run_command(instance_ip,"whereis hdfs")
-    # run_command(instance_ip, "echo $HADOOP_HOME")
-    #
-    # run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out")
+   # run_command(instance_ip, "source /home/ubuntu/.bashrc")
+    run_command(instance_ip,"whereis hdfs")
+    run_command(instance_ip, "echo $HADOOP_HOME")
+
+    run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out")
