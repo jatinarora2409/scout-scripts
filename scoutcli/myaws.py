@@ -218,7 +218,7 @@ def _request_spot_instance(client, **kwargs):
     print(instance_ip)
 
     print("\n")
-    run_command(instance_ip, "/bin/bash")
+    run_command(instance_ip, "source /home/ubuntu/.bashrc")
     run_command(instance_ip,"whereis hdfs")
     run_command(instance_ip, "echo $HADOOP_HOME")
 
