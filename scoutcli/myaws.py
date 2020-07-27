@@ -147,7 +147,6 @@ def _request_spot_instance(client, **kwargs):
                         'SubnetId': kwargs['subnet']
                     },
                 ],
-                'UserData': base64.b64encode(kwargs['user_data'].encode()).decode(),
                 'Placement': { 'AvailabilityZone': kwargs['availability_zone'] },
                 "TagSpecifications": [
                     {
