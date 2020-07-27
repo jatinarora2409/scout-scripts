@@ -218,8 +218,7 @@ def _request_spot_instance(client, **kwargs):
     print(instance_ip)
 
     print("\n")
-   # run_command(instance_ip, "source /home/ubuntu/.bashrc")
+    run_command(instance_ip, "export HADOOP_HOME=/home/ubuntu/hadoop-2.10.0")
     run_command(instance_ip,'bash -l -c "whereis hdfs;"')
     run_command(instance_ip,'bash -l -c "echo $HADOOP_HOME;"')
-
     run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out")
