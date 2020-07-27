@@ -220,7 +220,18 @@ def _request_spot_instance(client, **kwargs):
     print(instance_ip)
 
     print("\n")
-    run_command(instance_ip, 'bash --login -c "export HADOOP_HOME=/home/ubuntu/hadoop-2.10.0;"')
-    run_command(instance_ip, 'bash --login -c "echo $HADOOP_HOME;"')
-    run_command(instance_ip,'bash --login -c "whereis hdfs;"')
-    run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out")
+    command = ""
+    command = command + 'export HADOOP_HOME=/home/ubuntu/hadoop-2.10.0;'
+    command = command + 'export HADOOP_INSTALL=$HADOOP_HOME;'
+    command = command + 'export HADOOP_MAPRED_HOME=$HADOOP_HOME;'
+    command = command + 'export HADOOP_COMMON_HOME=$HADOOP_HOME;'
+    command = command + 'export HADOOP_HDFS_HOME=$HADOOP_HOME;'
+    command = command + 'export YARN_HOME=$HADOOP_HOME;'
+    command = command + 'export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin;'
+    command = command + 'export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native";'
+    command = command + 'export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native;'
+    command = command + 'python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out'
+    run_command(instance_ip, command)
+    # run_command(instance_ip, 'bash --login -c "echo $HADOOP_HOME;"')
+    # run_command(instance_ip,'bash --login -c "whereis hdfs;"')
+    # run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out")
