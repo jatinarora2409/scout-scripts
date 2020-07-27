@@ -71,7 +71,7 @@ mybenchmark()
     /bin/bash {}/auto_benchmark.sh {}'''.format(script_dir, workload_str) + '''
 }
 
-pwd
+pwd |& tee -a /tmp/init.out
 echo 'Executing the launch script' |& tee -a /tmp/init.out
 setup_ami |& tee -a /tmp/init.out
 python execute_start.py |& tee -a /tmp/launch.out
