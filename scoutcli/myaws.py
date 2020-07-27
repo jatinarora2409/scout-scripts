@@ -218,4 +218,4 @@ def _request_spot_instance(client, **kwargs):
     print(instance_ip)
 
     print("\n")
-    run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /tmp/launch.out")
+    run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /home/ubuntu/output_logs.out")
