@@ -177,9 +177,9 @@ def _request_spot_instance(client, **kwargs):
     )
     print(response)
     print(response['SpotFleetRequestId'])
-    time.sleep(180)
+    time.sleep(60)
     response = client.describe_spot_fleet_instances(
-        DryRun=True | False,
+        DryRun=False,
         MaxResults=10,
         SpotFleetRequestId=response['SpotFleetRequestId']
     )
