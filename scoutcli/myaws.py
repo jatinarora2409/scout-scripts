@@ -12,7 +12,7 @@ import time
 import boto3
 import botocore
 import paramiko
-
+import sys
 
 @click.group()
 @click.pass_context
@@ -105,8 +105,10 @@ def run_command(instance_ip,cmd):
         # close the client connection once the job is done
         client.close()
 
-    except:
-        print("Exception Occured")
+
+    except:  # catch *all* exceptions
+        e = sys.exc_info()[0]
+        print("<p>Error: %s</p>" % e)
 
 def _get_spot_price(instance_type):
     price_table = {
