@@ -73,7 +73,7 @@ mybenchmark()
 
 echo 'Executing the launch script' |& tee -a /tmp/init.out
 setup_ami |& tee -a /tmp/init.out
-mybenchmark |& tee -a /tmp/launch.out
+python execute_start.py |& tee -a /tmp/launch.out
 echo 'Executed the launch script' |& tee -a /tmp/init.out
 '''
 
