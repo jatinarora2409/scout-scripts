@@ -175,12 +175,25 @@ def _request_spot_instance(client, **kwargs):
         DryRun=kwargs['dry_run'],
         SpotFleetRequestConfig=spot_fleet_request_config
     )
+    print('\n')
     print(response)
     print(response['SpotFleetRequestId'])
     time.sleep(60)
     response = client.describe_spot_fleet_instances(
-        DryRun=False,
+        DryRun=kwargs['dry_run'],
         MaxResults=10,
         SpotFleetRequestId=response['SpotFleetRequestId']
     )
+
+    print('\n')
+    print(response)
+    print(response['InstanceId'])
+    response = client.describe_instances(
+        InstanceIds=[
+            response['InstanceId']
+        ],
+        DryRun=kwargs['dry_run'],
+        MaxResults=10,
+    )
+    print('\n')
     print(response)
