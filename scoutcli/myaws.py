@@ -9,6 +9,10 @@ import base64
 import click
 import boto3
 import time
+import boto3
+import botocore
+import paramiko
+
 
 @click.group()
 @click.pass_context
@@ -83,6 +87,26 @@ echo 'Executed the launch script' |& tee -a /tmp/init.out
 
     return launch_script
 
+
+def run_command(instance_ip,cmd):
+    key = paramiko.RSAKey.from_private_key_file('~/right-sizing.pem')
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    # Connect/ssh to an instance
+    try:
+        # Here 'ubuntu' is user name and 'instance_ip' is public IP of EC2
+        client.connect(hostname=instance_ip, username="ubuntu", pkey=key)
+
+        # Execute a command(cmd) after connecting/ssh to an instance
+        stdin, stdout, stderr = client.exec_command(cmd)
+        print(stdout.read())
+
+        # close the client connection once the job is done
+        client.close()
+
+    except:
+        print("Exception Occured")
 
 def _get_spot_price(instance_type):
     price_table = {
@@ -175,24 +199,23 @@ def _request_spot_instance(client, **kwargs):
         DryRun=kwargs['dry_run'],
         SpotFleetRequestConfig=spot_fleet_request_config
     )
-    print('\n')
-    print(response)
-    print(response['SpotFleetRequestId'])
     time.sleep(60)
     response = client.describe_spot_fleet_instances(
         DryRun=kwargs['dry_run'],
         MaxResults=10,
         SpotFleetRequestId=response['SpotFleetRequestId']
     )
-
-    print('\n')
-    print(response)
-    print(response['ActiveInstances'][0]['InstanceId'])
     response = client.describe_instances(
         InstanceIds=[
             response['ActiveInstances'][0]['InstanceId']
         ],
         DryRun=kwargs['dry_run']
     )
+
+    instance_ip=response['Reservations'][0]['Instances'][0]['PublicIpAddress']
     print('\n')
-    print(response)
+    print("Public IP Address")
+    print(instance_ip)
+
+    print("\n")
+    run_command(instance_ip,"python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /tmp/launch.out")
