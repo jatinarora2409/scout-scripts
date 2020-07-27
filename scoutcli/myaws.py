@@ -187,10 +187,10 @@ def _request_spot_instance(client, **kwargs):
 
     print('\n')
     print(response)
-    print(response['InstanceId'])
+    print(response['ActiveInstances'][0]['InstanceId'])
     response = client.describe_instances(
         InstanceIds=[
-            response['InstanceId']
+            response['ActiveInstances'][0]['InstanceId']
         ],
         DryRun=kwargs['dry_run'],
         MaxResults=10,
