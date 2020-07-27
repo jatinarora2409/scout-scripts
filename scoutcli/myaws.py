@@ -99,7 +99,7 @@ def run_command(instance_ip,cmd):
         client.connect(hostname=instance_ip, username="ubuntu", pkey=key)
 
         # Execute a command(cmd) after connecting/ssh to an instance
-        stdin, stdout, stderr = client.exec_command(cmd,get_pty=True)
+        stdin, stdout, stderr = client.exec_command(cmd)
         print(stdout.read())
 
         # close the client connection once the job is done
