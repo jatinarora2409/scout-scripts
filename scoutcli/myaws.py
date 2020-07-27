@@ -74,7 +74,7 @@ cd /home/ubuntu
 pwd |& tee -a /tmp/init.out
 echo 'Executing the launch script' |& tee -a /tmp/init.out
 setup_ami |& tee -a /tmp/init.out
-python execute_start.py |& tee -a /tmp/launch.out
+python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 6 |& tee -a /tmp/launch.out
 echo 'Executed the launch script' |& tee -a /tmp/init.out
 '''
 
