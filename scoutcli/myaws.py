@@ -8,7 +8,7 @@ import base64
 
 import click
 import boto3
-
+import time
 
 @click.group()
 @click.pass_context
@@ -174,5 +174,13 @@ def _request_spot_instance(client, **kwargs):
     response = client.request_spot_fleet(
         DryRun=kwargs['dry_run'],
         SpotFleetRequestConfig=spot_fleet_request_config
+    )
+    print(response)
+    print(response['SpotFleetRequestId'])
+    time.sleep(180)
+    response = client.describe_spot_fleet_instances(
+        DryRun=True | False,
+        MaxResults=10,
+        SpotFleetRequestId=response['SpotFleetRequestId']
     )
     print(response)
