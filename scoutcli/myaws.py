@@ -192,8 +192,7 @@ def _request_spot_instance(client, **kwargs):
         InstanceIds=[
             response['ActiveInstances'][0]['InstanceId']
         ],
-        DryRun=kwargs['dry_run'],
-        MaxResults=10,
+        DryRun=kwargs['dry_run']
     )
     print('\n')
     print(response)
