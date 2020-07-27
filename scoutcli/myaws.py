@@ -89,7 +89,7 @@ echo 'Executed the launch script' |& tee -a /tmp/init.out
 
 
 def run_command(instance_ip,cmd):
-    key = paramiko.RSAKey.from_private_key_file('~/right-sizing.pem')
+    key = paramiko.RSAKey.from_private_key_file('/home/ubuntu/right-sizing.pem')
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
