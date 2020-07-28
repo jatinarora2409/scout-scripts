@@ -201,7 +201,7 @@ def _request_spot_instance(client, **kwargs):
         DryRun=kwargs['dry_run'],
         SpotFleetRequestConfig=spot_fleet_request_config
     )
-    time.sleep(60)
+    time.sleep(120)
     response = client.describe_spot_fleet_instances(
         DryRun=kwargs['dry_run'],
         MaxResults=10,
