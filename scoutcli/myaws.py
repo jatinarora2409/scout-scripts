@@ -221,6 +221,7 @@ def _request_spot_instance(client, **kwargs):
 
     print("\n")
     workload_string = kwargs['workload']
+    print(workload_string)
     workload = workload_string.split(" ")
     command = ""
     command = command + 'export HADOOP_HOME=/home/ubuntu/hadoop-2.10.0;'
