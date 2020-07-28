@@ -227,7 +227,7 @@ def _request_spot_instance(client, **kwargs):
     print(instance_ip)
 
     print("\n")
-    workload_string = kwargs['workload']
+    workload_string = kwargs['workload'][0]
     print(workload_string)
     workload = workload_string.split(" ")
     command = ""
