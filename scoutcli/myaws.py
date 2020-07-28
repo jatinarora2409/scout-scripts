@@ -230,7 +230,7 @@ def _request_spot_instance(client, **kwargs):
     command = command + 'export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin;'
     command = command + 'export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native";'
     command = command + 'export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native;'
-    command = command + 'python execute_start.py --workload pagerank --hibench_cat websearch --framework spark --datasize large --exp_num 10 |& tee -a /home/ubuntu/output_logs.out'
+    command = command + 'python execute_start.py --workload pagerank --hibench_cat websearch --framework hadoop --datasize large --exp_num 10 |& tee -a /home/ubuntu/output_logs.out'
     run_command(instance_ip, command)
     # run_command(instance_ip, 'bash --login -c "echo $HADOOP_HOME;"')
     # run_command(instance_ip,'bash --login -c "whereis hdfs;"')
