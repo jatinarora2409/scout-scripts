@@ -201,6 +201,13 @@ def _request_spot_instance(client, **kwargs):
         DryRun=kwargs['dry_run'],
         SpotFleetRequestConfig=spot_fleet_request_config
     )
+
+    print("\n")
+    workload_string = kwargs['workload']
+    print(workload_string)
+    workload = workload_string.split(" ")
+    print(workload)
+
     time.sleep(120)
     response = client.describe_spot_fleet_instances(
         DryRun=kwargs['dry_run'],
