@@ -203,10 +203,12 @@ def _request_spot_instance(client, **kwargs):
     )
 
     print("\n")
-    workload_string = kwargs['workload']
+    workload_string = ""
+    for workload in kwargs['workload']:
+        workload_string = workload
+        break;
     print(workload_string)
     workload = workload_string.split(" ")
-    print(workload)
 
     time.sleep(120)
     response = client.describe_spot_fleet_instances(
@@ -226,13 +228,7 @@ def _request_spot_instance(client, **kwargs):
     print("Public IP Address")
     print(instance_ip)
 
-    print("\n")
-    workload_string = ""
-    for workload in workload:
-        workload_string = workload
-        break;
-    print(workload_string)
-    workload = workload_string.split(" ")
+
     command = ""
     command = command + 'export HADOOP_HOME=/home/ubuntu/hadoop-2.10.0;'
     command = command + 'export HADOOP_INSTALL=$HADOOP_HOME;'
