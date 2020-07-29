@@ -230,7 +230,7 @@ def _request_spot_instance(client, **kwargs):
 
 
     command = ""
-    command = command + 'nohup python execute_start.py --workload '+workload[2]+' --hibench_cat '+workload[1]+' --framework '+workload[0]+' --datasize '+workload[3]+' --exp_num '+workload[4]+' |& tee -a /home/ubuntu/output_logs.out &'
+    command = command + 'nohup python execute_start.py --workload '+workload[2]+' --hibench_cat '+workload[1]+' --framework '+workload[0]+' --datasize '+workload[3]+' --exp_num '+workload[4]+' > /home/ubuntu/output_logs.out &'
     print(command)
     run_command(instance_ip, command)
     # run_command(instance_ip, 'bash --login -c "echo $HADOOP_HOME;"')
