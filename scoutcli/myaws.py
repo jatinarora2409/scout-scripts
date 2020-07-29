@@ -230,19 +230,6 @@ def _request_spot_instance(client, **kwargs):
 
 
     command = ""
-    command = command + 'export HADOOP_HOME=/home/ubuntu/hadoop-2.10.0;'
-    command = command + 'export HADOOP_INSTALL=$HADOOP_HOME;'
-    command = command + 'export HADOOP_MAPRED_HOME=$HADOOP_HOME;'
-    command = command + 'export HADOOP_COMMON_HOME=$HADOOP_HOME;'
-    command = command + 'export HADOOP_HDFS_HOME=$HADOOP_HOME;'
-    command = command + 'export YARN_HOME=$HADOOP_HOME;'
-    command = command + 'export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin;'
-    command = command + 'export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native";'
-    command = command + 'export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native;'
-    command = command + 'export SPARK_HOME=/home/ubuntu/spark-2.4.6-bin-hadoop2.7;'
-    command = command + 'export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin;'
-    command = command + 'export PYSPARK_PYTHON=/usr/bin/python3;'
-
     command = command + 'nohup python execute_start.py --workload '+workload[2]+' --hibench_cat '+workload[1]+' --framework '+workload[0]+' --datasize '+workload[3]+' --exp_num '+workload[4]+' |& tee -a /home/ubuntu/output_logs.out &'
     print(command)
     run_command(instance_ip, command)
